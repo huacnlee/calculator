@@ -15,7 +15,7 @@ curl -fsSL https://gpui-kit.com/shell/install.sh | sh
 ```bash
 git clone https://github.com/huacnlee/calculator.git
 cd calculator
-./run.sh
+gpui-shell run --dev
 ```
 
 ## Keyboard
