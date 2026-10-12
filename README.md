@@ -15,3 +15,14 @@ git clone https://github.com/huacnlee/calculator.git
 cd calculator
 ./run.sh
 ```
+
+## Keyboard
+
+| Key | Action |
+| --- | --- |
+| `0`–`9` `.` | Enter a number |
+| `+` `-` `*` `/` | Add, subtract, multiply, divide |
+| `%` | Percent |
+| `Return` / `=` | Equals |
+| `Backspace` | Delete the last digit |
+| `Escape` / `c` | Clear |
