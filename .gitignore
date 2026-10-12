@@ -1,0 +1,6 @@
+# Written by gpui-shell on every run; regenerate with `gpui-shell types --dir .`
+gpui-kit.d.ts
+jsconfig.json
+# Git dependencies linked by gpui-shell
+node_modules/
+.DS_Store
