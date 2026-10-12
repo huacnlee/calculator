@@ -115,6 +115,24 @@ const KEY_MAP = {
 };
 
 /**
+ * The ASCII character a key means, whatever input method typed it.
+ *
+ * A Chinese input method in its punctuation mode turns "." into "。" and
+ * types full-width forms such as "＋" or "５"; the calculator has to read
+ * them as the keys they were pressed as.
+ * @param {string} char
+ */
+function asciiKey(char) {
+  if (char === "。") return ".";
+  const code = char.codePointAt(0) ?? 0;
+  // Full-width forms U+FF01–U+FF5E sit 0xFEE0 above their ASCII originals.
+  if (char.length === 1 && code >= 0xff01 && code <= 0xff5e) {
+    return String.fromCodePoint(code - 0xfee0);
+  }
+  return char;
+}
+
+/**
  * The desktop's palette and shell scale, on Linux with an Omarchy theme.
  * Anywhere else there is nothing to read, which is the normal case rather
  * than an error.
@@ -177,7 +195,7 @@ export default class CalculatorApp extends View {
   /** @param {import("gpui-kit").KeyEvent} event @param {import("gpui-kit").Context} cx */
   onKeyDown(event, cx) {
     if (event.modifiers.platform || event.modifiers.control) return;
-    const char = event.key_char ?? event.key;
+    const char = asciiKey(event.key_char ?? event.key);
     const action = /^[0-9]$/.test(char) ? char : KEY_MAP[char] ?? KEY_MAP[event.key];
     if (!action) return;
     this.dispatch(action);
